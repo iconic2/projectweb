@@ -13,6 +13,8 @@
 
 <style>
 
+
+
 {% block style %}
 {% endblock %}
 
@@ -27,12 +29,13 @@
     <div class="navbar-nav">
         <a class="nav-item nav-link" href="/">Home</a>
         <a class="nav-item nav-link" href="/">Inloggen</a>
-        <a class="nav-item nav-link" href="/">Docenten</a>
+        {% block nav %}
+        {% endblock %}
     </div>
 </nav>
 {% block content %}
 
 {% endblock %}
-
+<footer>Copyright: Jesse Haaiema & Timo Kosse.</footer>
 </body>
 </html>
