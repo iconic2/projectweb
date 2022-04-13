@@ -12,8 +12,23 @@
 
 
 <style>
+html, body{
+    height: 100%;
+    width: 100%;
+    color: white;
+}
 
+footer{
+    width: 100%;
+    text-align: center;
+    position:fixed;
+    bottom: 0;
+    color: white;
+}
 
+#header{
+    display: block;
+}
 
 {% block style %}
 {% endblock %}
@@ -28,7 +43,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="navbar-nav">
         <a class="nav-item nav-link" href="/">Home</a>
-        <a class="nav-item nav-link" href="/">Inloggen</a>
         {% block nav %}
         {% endblock %}
     </div>

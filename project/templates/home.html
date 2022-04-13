@@ -5,22 +5,25 @@
   {{ super() }}
 
    
-body {
+   body {
       background-color:black;
 
    }
 
-#header {
-   width: 100%;
-   height:250px;
-   background-color:blue;
-   background-image: url('https://papers.co/wallpaper/papers.co-ax42-coding-dark-computer-bokeh-illustration-art-black-30-wallpaper.jpg');
-   background-size: cover;
-   text-align: center;
-   
-}
+   #header {
+      width: 100%;
+      height:250px;
+      background-color:blue;
+      background-image: url('https://papers.co/wallpaper/papers.co-ax42-coding-dark-computer-bokeh-illustration-art-black-30-wallpaper.jpg');
+      background-size: cover;
+      text-align: center;
+      
+   }
 {% endblock %}
 
+{% block nav %}
+<a class="nav-item nav-link" href="/login">Inloggen</a>
+{% endblock %}
 
 {% block content %}
    <div id="header">
@@ -51,5 +54,4 @@ body {
          <p style="color: black; text-align:center">C is wat moeilijker om te leren, maar kan erg leuk zijn!</p>
       </div>
    </div>
-
 {% endblock %}

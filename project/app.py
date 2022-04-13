@@ -1,5 +1,7 @@
 from distutils.log import debug
 from flask import Flask, render_template
+from flask_wtf import FlaskForm
+#from forms.py import LoginForm
 
 app = Flask(__name__, template_folder="templates")
 
@@ -12,6 +14,8 @@ def index():
 
 @app.route("/login")
 def login():
+    #form = LoginForm()
+    #f form.validat_on_submit():
     return render_template('login.html')
 
 
