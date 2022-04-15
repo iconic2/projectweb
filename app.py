@@ -1,6 +1,4 @@
 
-from pydoc import Doc
-from re import template
 from flask import Flask, render_template,redirect, url_for, Blueprint,flash
 from flask_wtf import FlaskForm
 from project.forms import Klantlogin,Docentlogin
