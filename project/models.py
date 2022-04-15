@@ -1,8 +1,3 @@
-
-
-
-
-
 # !!! NOG NIET AF!!!
 
 
@@ -11,19 +6,14 @@
 
 ##################################################################################3
 
-# In dit bestand maken we de tabellen aan in de database 
+# In dit bestand maken we de tabellen aan in de database
 
-from flask_sqlalchemy import SQLAlchemy, String, Integer, VARCHAR,date
+from flask_sqlalchemy import SQLAlchemy
+
 from flask import Flask
-
-
-app = Flask(__name__)
-
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database-test.sqlite'
-
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
-db = SQLAlchemy(app)
+from project import login_manager,db,app
+from flask_login import UserMixin
+from werkzeug.security import check_password_hash, generate_password_hash
 
 
 '''
@@ -37,39 +27,62 @@ We hebben de tabellen:
 
 
 '''
-class Docenten(db.Model):
+@login_manager.user_loader
+def load_user(user_id):
+  return Klanten.query.get(user_id)
+
+
+class Docenten(db.Model,UserMixin):
     __tablename__ = 'docenten'
     id = db.Column(db.Integer, primary_key=True)#AUTOINCREMENT NOG TOEVOEGEN
     emailadres = db.Column(db.VARCHAR(50))
-    gebruikersnaam = db.Column(db.VARCHAR(25))#UNIQUE
-    gebruikersnaam = db.Column(db.VARCHAR(128))#UNIQUE
+    gebruikersnaam = db.Column(db.VARCHAR(25)) #UNIQUE
+    wachtwoord = db.Column(db.VARCHAR(128)) #UNIQUE
+
+    def __init__(self, emailadres,gebruikersnaam,wachtwoord):
+        self.emailadres = emailadres
+        self.gebruikersnaam = gebruikersnaam
+        self.wachtwoord_hashed = generate_password_hash(wachtwoord)
+
+    def check_password(self,password):
+        return check_password_hash(self.wachtwoord_hashed, password)
 
 
-class Klanten(db.Model):
+class Klanten(db.Model,UserMixin):
     __tablename__ = 'klanten'
     id = db.Column(db.Integer, primary_key=True)#AUTOINCREMENT NOG TOEVOEGEN
     emailadres = db.Column(db.VARCHAR(50))
     gebruikersnaam = db.Column(db.VARCHAR(25))#UNIQUE
-    gebruikersnaam = db.Column(db.VARCHAR(128))#UNIQUE
+    wachtwoord = db.Column(db.VARCHAR(128))#UNIQUE
+
+    def __init__(self, emailadres,gebruikersnaam,wachtwoord):
+        self.emailadres = emailadres
+        self.gebruikersnaam = gebruikersnaam
+        self.wachtwoord = generate_password_hash(wachtwoord)
+
+    def check_password(self,password):
+        return check_password_hash(self.wachtwoord, password)
 
 
-class Lessen(db.Model):
+class Lessen(db.Model,UserMixin):
     __tablename__ = 'lessen'
     id = db.Column(db.Integer, primary_key=True)#AUTOINCREMENT NOG TOEVOEGEN
-    docent_id = db.Column(db.Integer, db.ForeignKey('docent.id'))
-    taal_id = db.Column(db.Integer,db.ForeignKey('taal.id'))
-    start = db.Column(db.date)
-    locatie = db.Column(db.varchar(20))# TOEVOEGEN MET UNIQUE
+    docent_id = db.Column(db.Integer, db.ForeignKey('docenten.id'))
+    taal_id = db.Column(db.Integer,db.ForeignKey('talen.id'))
+    start = db.Column(db.VARCHAR(20))
+    locatie = db.Column(db.VARCHAR(20))# TOEVOEGEN MET UNIQUE
 # Database connectie
 
-class programmeer_talen(db.Model):
+class programmeer_talen(db.Model,UserMixin):
     __tablename__ = 'talen'
     id = db.Column(db.Integer, primary_key=True)#AUTOINCREMENT NOG TOEVOEGEN
     naam = db.Column(db.VARCHAR(20))
     #UNIQUE TOEVOEGEN
 
-class Klant_Lessen(db.Model):
+class Klant_Lessen(db.Model,UserMixin):
     __tablename__ = 'klant_lessen'
-    k_id = db.Column(db.Integer,db.ForeignKey('klant.id') primary_key=True) #AUTOINCREMENT NOG TOEVOEGEN
-    L_id = db.Column(db.Integer,db.ForeignKey('lessen.id'), primary_key=True )#AUTOINCREMENT NOG TOEVOEGEN
-  
+    k_id = db.Column(db.Integer,db.ForeignKey('klanten.id'), primary_key=True) 
+    L_id = db.Column(db.Integer,db.ForeignKey('lessen.id'), primary_key=True )#AUTOINCREMENT NOG 
+
+
+db.create_all()

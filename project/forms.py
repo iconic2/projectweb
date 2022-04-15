@@ -2,7 +2,7 @@ from email.policy import default
 from flask_wtf import FlaskForm
 from wtforms import (StringField, SubmitField,
             PasswordField, DateField, EmailField)
-from wtforms.validators import DataRequired
+from wtforms.validators import DataRequired, email_validator as email
 
 class RoostersForm(FlaskForm):
     voornaam = StringField("Voornaam", validators=[DataRequired()])
@@ -26,3 +26,12 @@ class InschrijfForm(FlaskForm):
     voornaam = StringField("Voornaam", validators=[DataRequired()])
     submit = SubmitField('Versturen')
 
+class klantlogin(FlaskForm):
+    email = StringField('Voer hier uw emailadres in',validators=[DataRequired(),email()])
+    wachtwoord = StringField('Voer hier uw wachtwoord in', validators=[DataRequired()])
+    submit = SubmitField('Inloggen')
+
+class docentlogin(FlaskForm):
+    email = StringField('Voer hier uw emailadres in',validators=[DataRequired(),email()])
+    wachtwoord = StringField('Voer hier uw wachtwoord in', validators=[DataRequired()])
+    submit = SubmitField('Inloggen')
