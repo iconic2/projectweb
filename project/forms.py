@@ -1,3 +1,4 @@
+from tracemalloc import start
 from flask_wtf import FlaskForm
 from wtforms import (StringField, SubmitField,
             PasswordField, DateField, EmailField,IntegerField)
@@ -10,7 +11,10 @@ from flask import flash
 
 
 class RoostersForm(FlaskForm):
-    voornaam = StringField("Voornaam", validators=[DataRequired()])
+    lesid = IntegerField("Lesid", validators=[DataRequired()])
+    taalid = StringField("Taalid", validators=[DataRequired()])
+    start = StringField("Start", validators=[DataRequired()])
+    locatie = StringField("Locatie", validators=[DataRequired()])
     submit = SubmitField('Versturen')
     
 class LesForm(FlaskForm): #hierbij gebruiken we het docentid van de Docent die is ingelogd
@@ -24,7 +28,7 @@ class TaalForm(FlaskForm):
     submit = SubmitField('Versturen')
 
 class GegevensForm(FlaskForm):
-    email = StringField("Voornaam", validators=[DataRequired()])
+    email = StringField("Email", validators=[DataRequired()])
     submit = SubmitField('Versturen')
 
 class InschrijfForm(FlaskForm):
