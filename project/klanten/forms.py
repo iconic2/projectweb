@@ -6,6 +6,3 @@ class klantlogin(FlaskForm):
     email = StringField('Voer hier uw emailadres in',validators=[data_required(),email()])
     wachtwoord = StringField('Voer hier uw wachtwoord in', validators=[data_required()])
     submit = SubmitField('Inloggen')
-
-
- 
