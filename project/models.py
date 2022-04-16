@@ -15,7 +15,6 @@ def load_user(user_id):
     return Gebruikers.query.get(user_id)
 
 
-
 class Gebruikers(db.Model,UserMixin):
     __tablename__ = 'gebruikers'
     id = db.Column(db.Integer, primary_key=True)#AUTOINCREMENT NOG TOEVOEGEN
@@ -32,7 +31,6 @@ class Gebruikers(db.Model,UserMixin):
 
     def check_password(self,password):
         return check_password_hash(self.wachtwoord, password)
-
 
 
 
@@ -59,9 +57,6 @@ class Klant_Lessen(db.Model,UserMixin):
 
 
 db.create_all()
-
-
-
 
 
 
