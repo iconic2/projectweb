@@ -80,17 +80,6 @@ from flask_login import UserMixin
 from werkzeug.security import check_password_hash, generate_password_hash
 
 
-'''
-We hebben de tabellen:
-
-- Docenten
-- Klanten
-- klant_lessen (Tussentabel)
-- lessen
-- programmeertalen
-
-
-'''
 @login_manager.user_loader
 def load_user(user_id):
   return Klanten.query.get(user_id)
