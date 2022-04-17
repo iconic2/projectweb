@@ -1,11 +1,12 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, IntegerField, SubmitField
-from wtforms.validators import data_required, email
+from wtforms import (StringField, SubmitField,
+            PasswordField, DateField, EmailField,IntegerField)
+#from wtforms.validators import DataRequired, email_validator as email
+from wtforms.validators import data_required,DataRequired, email, EqualTo, ValidationError
+from project.models import Gebruikers
+from flask import flash
 
-class klantlogin(FlaskForm):
-    email = StringField('Voer hier uw emailadres in',validators=[data_required(),email()])
-    wachtwoord = StringField('Voer hier uw wachtwoord in', validators=[data_required()])
-    submit = SubmitField('Inloggen')
 
-
- 
+class InschrijfForm(FlaskForm):
+    voornaam = StringField("Voornaam", validators=[DataRequired()])
+    submit = SubmitField('Versturen')
