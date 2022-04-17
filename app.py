@@ -1,4 +1,5 @@
 
+from cgi import test
 from pydoc import locate
 from tracemalloc import start
 from flask import Flask, render_template,redirect, url_for, Blueprint,flash
@@ -9,7 +10,6 @@ from project import app,login_manager,db, engine
 from flask_login import login_user, logout_user,login_required, LoginManager
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-
 
 @app.route("/")
 def index():
@@ -169,64 +169,7 @@ def cursussen():
     return render_template("cursussen.html")
 
     
-@app.route("/roosters_wijzigen")
-def roosters_wijzigen():
-    form = RoostersForm()
 
-    if form.validate_on_submit():       
-
-        nieuwrooster = Lessen.query.filter_by(id=form.lesid.data).first()
-        nieuwrooster.docent_id = session.query(Gebruikers.id)
-        nieuwrooster.taal_id = form.taalid.data
-        nieuwrooster.start = form.start.data
-        nieuwrooster.locatie = form.locatie.data
-        db.session.commit()
-        
-        return render_template('roosters_wijzigen.html',form=form)
-    return render_template('roosters_wijzigen.html',form=form)
-
-@app.route("/les_toevoegen", methods=['GET','POST'])
-def les_toevoegen():
-    form = LesForm()
-
-    if form.validate_on_submit():
-        engine = create_engine('sqlite:///project/database.sqlite')
-
-        Session = sessionmaker(bind=engine)
-        session = Session()
-        nieuweles = Lessen(docent_id=session.query(Gebruikers.id),taal_id=form.taal.data,start=form.start.data,locatie=form.locatie.data)
-        db.session.add(nieuweles)
-        db.session.commit()
-        
-        return render_template('les_toevoegen.html',form=form)
-    return render_template('les_toevoegen.html',form=form)
-
-
-@app.route("/taal_toevoegen")
-def taal_toevoegen():
-    form = TaalForm()
-
-    if form.validate_on_submit():
-        
-        nieuwetaal = programmeer_talen(naam=form.taalnaam.data)
-        db.session.add(nieuwetaal)
-        db.session.commit()
-        
-        return render_template('taal_toevoegen.html',form=form)
-    return render_template('taal_toevoegen.html',form=form)
-
-@app.route("/gegevens_bewerken")
-def gegevens_bewerken():
-    form = GegevensForm()
-
-    if form.validate_on_submit():
-        
-        nieuwegegevens = Gebruikers.query.filter_by(id=session.query(Gebruikers.id)).first()
-        nieuwegegevens.emailadres = form.email.data
-        db.session.commit()
-        
-        return render_template('gegevens_bewerken.html',form=form)
-    return render_template('gegevens_bewerken.html',form=form)
 
 
 

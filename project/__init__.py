@@ -32,3 +32,6 @@ db = SQLAlchemy(app)
 
 from project.klanten.views import klanten_blueprint
 app.register_blueprint(klanten_blueprint,url_prefix="/cursisten")
+
+from project.docenten.views import docenten_blueprint
+app.register_blueprint(docenten_blueprint,url_prefix="/docenten")

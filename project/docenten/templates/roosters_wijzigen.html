@@ -2,10 +2,10 @@
 {% block style %}
 {% endblock %}
 {% block nav %}
-<a class="nav-item nav-link" href="/roosters_wijzigen">roosters</a>
-<a class="nav-item nav-link" href="/gegevens_bewerken">gegevens</a>
-<a class="nav-item nav-link" href="/les_toevoegen">lessen</a>
-<a class="nav-item nav-link" href="/taal_toevoegen">talen</a>
+<a class="nav-item nav-link" href="{{ url_for('docenten.roosters')}}">roosters</a>
+<a class="nav-item nav-link" href="{{ url_for('docenten.gegevens')}}">gegevens</a>
+<a class="nav-item nav-link" href="{{ url_for('docenten.cursussen')}}">lessen</a>
+<a class="nav-item nav-link" href="{{ url_for('docenten.talen')}}">talen</a>
 <a class="nav-item nav-link" style="float: right;" href="/uitloggen">uitloggen</a>
 {% endblock %}
 {% block content %}
