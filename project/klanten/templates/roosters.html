@@ -1,0 +1,30 @@
+{%extends "base.html"%}
+
+{% block nav %}
+    <a class="nav-item nav-link" href="{{ url_for('klanten.cursussen')}}">Alle lessen</a>
+    <a class="nav-item nav-link" style="float: right;" href="{{ url_for('klanten.inschrijven')}}">Inschrijven cursus</a>
+    <a class="nav-item nav-link" style="float: right;" href="/uitloggen">uitloggen</a>
+{% endblock %}
+
+{%block content%}
+<h1 style="color: black;"> Hieronder alle lessen waar je bent inschreven: </h1>
+
+<br>
+<table class="table table-dark">
+<tr>
+<td>Les nummer</td>
+<td>Datum</td>
+<td>Locatie</td>
+<td>Onderwerp</td>
+</tr>
+{%for values in lijst%}
+<tr>
+<td>{{values[0]}}</td>
+<td>{{values[1]}}</td>
+<td>{{values[2]}}</td>
+<td>{{values[3]}}</td>
+</tr>
+{% endfor %}
+<table>
+
+{%endblock%}

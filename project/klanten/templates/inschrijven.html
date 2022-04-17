@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% block style %}
+{{ super() }}
+
+
+body {
+   background-color: #3D6483;
+
+   }
+
+#header {
+
+   width: 100%;
+   height:250px;
+   
+   
+   text-align: center;
+   background-image: url('https://dpanoply.s3.amazonaws.com/blog/wet-frosted-glass-effect/02.jpg');
+   background-size: cover;
+   text-align: center;
+   
+
+}
+
+hr {
+   background-color: white;
+   height: 10px;
+}
+
+p {
+   text-align: center;
+   color: white;
+
+
+
+}
+
+.form-control {
+   position: relative;
+   width: 300px;
+}
+
+.login-box {
+
+   margin:auto;
+   width: 50%;
+   height: 400px;
+   text-align: center;
+}   
+
+
+
+.niceform {
+    padding: 30px;
+}
+
+
+
+
+}
+
+h5 {
+   color: white;
+
+}
+{% endblock %}
+
+{% block nav %}
+    <a class="nav-item nav-link" href="{{ url_for('klanten.roosters')}}">Jouw rooster</a>
+    <a class="nav-item nav-link" href="{{ url_for('klanten.cursussen')}}">Alle lessen</a>
+    <a class="nav-item nav-link" style="float: right;" href="/uitloggen">uitloggen</a>
+{% endblock %}
+
+<div class="container">
+    {% for flash in get_flashed_messages() %}
+    <div style="top:10px;" class="alert alert-primary" role="alert">
+
+      {{ flash }}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    {% endfor %}
+      
+</div>
+
+{% block content %}
+<h1>Schrijf je hier in:</h1>
+<form method="post" class="niceform">
+    {{ form.hidden_tag() }}
+    {{ form.lesid.label }} {{ form.lesid(class="form-control") }}
+    <br>
+    {{ form.submit }}
+</form>
+{% endblock %}
