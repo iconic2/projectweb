@@ -2,7 +2,7 @@
 from cgi import test
 from pydoc import locate
 from tracemalloc import start
-from flask import Flask, render_template,redirect, url_for, Blueprint,flash, request
+from flask import Flask, render_template,redirect, url_for, Blueprint,flash, request, session
 from flask_wtf import FlaskForm
 from project.forms import  Klantlogin,Docentlogin, LesForm, Registreren 
 from project.models import *

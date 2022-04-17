@@ -9,13 +9,13 @@ from flask import flash
 
 class RoostersForm(FlaskForm):
     lesid = IntegerField("Lesid", validators=[DataRequired()])
-    taalid = StringField("Taalid", validators=[DataRequired()])
+    taalid = IntegerField("Taalid", validators=[DataRequired()])
     start = StringField("Start", validators=[DataRequired()])
     locatie = StringField("Locatie", validators=[DataRequired()])
     submit = SubmitField('Versturen')
     
 class LesForm(FlaskForm): #hierbij gebruiken we het docentid van de Docent die is ingelogd
-    taal = StringField("Taal", validators=[DataRequired()])
+    taal = IntegerField("Taal id", validators=[DataRequired()])
     start = DateField("Datum", validators=[DataRequired()])
     locatie = StringField("Locatie", default="Online")
     submit = SubmitField('Versturen')

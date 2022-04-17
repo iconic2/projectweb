@@ -3,11 +3,11 @@
 
 
 {% block nav %}
-<a class="nav-item nav-link" href="">Rooster aanmaken</a>
-<a class="nav-item nav-link" href="">Cursus toevoegen</a>
-<a class="nav-item nav-link" href="">Programmeertaal toevoegen</a>
-<a class="nav-item nav-link" href="">Mijn gegevens aanpassen</a>
-<a class="nav-item nav-link" href="/uitloggen">Uitloggen</a>
+<a class="nav-item nav-link" href="{{ url_for('docenten.roosters') }}">Rooster aanmaken</a>
+<a class="nav-item nav-link" href="{{ url_for('docenten.gegevens') }}">Mijn gegevens aanpassen</a>
+<a class="nav-item nav-link" href="{{ url_for('docenten.cursussen') }}">Cursus toevoegen</a>
+<a class="nav-item nav-link" href="{{ url_for('docenten.talen') }}">Programmeertaal toevoegen</a>
+<a class="nav-item nav-link" style="float: right;" href="/uitloggen">Ufitloggen</a>
 {% endblock %}
 
 {% block content %}
