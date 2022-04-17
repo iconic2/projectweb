@@ -2,7 +2,7 @@
 from cgi import test
 from pydoc import locate
 from tracemalloc import start
-from flask import Flask, render_template,redirect, url_for, Blueprint,flash
+from flask import Flask, render_template,redirect, url_for, Blueprint,flash, request
 from flask_wtf import FlaskForm
 from project.forms import  Klantlogin,Docentlogin, LesForm, Registreren 
 from project.models import *
@@ -141,7 +141,7 @@ def leerlingen():
 
 @app.route("/docenten")
 @login_required
-def docenthome():
+def docenten():
     return render_template('docenthome.html')
 
 
@@ -158,15 +158,6 @@ def docenthome():
 
 
 
-######## HIERONDER DE VIEWS ############
-
-@app.route("/docenten")
-def docenten():
-    return render_template("docenten.html")
-
-@app.route("/cursussen")
-def cursussen():
-    return render_template("cursussen.html")
 
     
 

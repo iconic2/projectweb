@@ -1,3 +1,4 @@
+from crypt import methods
 from certifi import where
 from flask import Blueprint,render_template,redirect,url_for
 from project import engine
@@ -8,6 +9,7 @@ from project.models import Lessen, programmeer_talen, Gebruikers
 
 
 docenten_blueprint = Blueprint('docenten', __name__, template_folder='templates')
+
 
 
 
