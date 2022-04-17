@@ -8,11 +8,25 @@ from project.models import Lessen
 klanten_blueprint = Blueprint('klanten', __name__, template_folder='templates')
 
 
-@klanten_blueprint.route('/lessen', methods=['GET'])
+
+# roosters bekijken
+@klanten_blueprint.route('/roosters', methods=['GET'])
 def list():
-    Session = sessionmaker(bind=engine)
-    session = Session()
-
     lessen = Lessen.query.all()
+    print(lessen)
+    return render_template('les.html', lessen=lessen)
 
+
+# aanmelden bij cursus
+@klanten_blueprint.route('/inschrijven', methods=['GET'])
+def list():
+    lessen = Lessen.query.all()
+    print(lessen)
+    return render_template('les.html', lessen=lessen)
+
+# bekijk alle cursussen
+@klanten_blueprint.route('/cursussen', methods=['GET'])
+def list():
+    lessen = Lessen.query.all()
+    print(lessen)
     return render_template('les.html', lessen=lessen)
