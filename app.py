@@ -3,7 +3,7 @@ from pydoc import locate
 from tracemalloc import start
 from flask import Flask, render_template,redirect, url_for, Blueprint,flash
 from flask_wtf import FlaskForm
-from project.forms import GegevensForm, Klantlogin,Docentlogin, LesForm, Registreren, RegistrerenDocent, RoostersForm, TaalForm
+from project.forms import  Klantlogin,Docentlogin, LesForm, Registreren 
 from project.models import *
 from project import app,login_manager,db, engine
 from flask_login import login_user, logout_user,login_required, LoginManager

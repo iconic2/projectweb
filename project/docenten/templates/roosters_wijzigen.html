@@ -9,4 +9,11 @@
 <a class="nav-item nav-link" style="float: right;" href="/uitloggen">uitloggen</a>
 {% endblock %}
 {% block content %}
+<form method="post">
+    {{ form.lesid.label }} {{ form.lesid }}
+    {{ form.taalid.label }} {{ form.taalid }}
+    {{ form.start.label }} {{ form.start }}
+    {{ form.locatie.label }} {{ form.locatie }}
+    {{ form.submit }}
+</form>
 {% endblock %}

@@ -9,6 +9,8 @@
 <a class="nav-item nav-link" href="/uitloggen">uitloggen</a>
 {% endblock %}
 {% block content %}
+<form method="post">
 {{ form.email.label }} {{ form.email }}
 {{ form.submit }}
+</form>
 {% endblock %}
