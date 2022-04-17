@@ -1,0 +1,20 @@
+    {% extends 'base.html' %}
+    {% block style %}
+    {% endblock %}
+    {% block nav %}
+    <a class="nav-item nav-link" href="/roosters_wijzigen">roosters</a>
+    <a class="nav-item nav-link" href="/gegevens_bewerken">gegevens</a>
+    <a class="nav-item nav-link" href="/les_toevoegen">lessen</a>
+    <a class="nav-item nav-link" href="/taal_toevoegen">talen</a>
+    <a class="nav-item nav-link" href="/uitloggen">uitloggen</a>
+    {% endblock %}
+    {% block content %}
+    {{ form.hidden_tag() }}
+    {{ form.taal.label }} {{ form.taal }}
+    <br>
+    {{ form.start.label }} {{ form.start }}
+    <br>
+    {{ form.locatie.label }} {{ form.locatie }}
+    <br>
+    {{ form.submit }}
+    {% endblock %}

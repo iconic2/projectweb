@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block style %}
+{% endblock %}
+{% block nav %}
+<a class="nav-item nav-link" href="/roosters_wijzigen">roosters</a>
+<a class="nav-item nav-link" href="/gegevens_bewerken">gegevens</a>
+<a class="nav-item nav-link" href="/les_toevoegen">lessen</a>
+<a class="nav-item nav-link" href="/taal_toevoegen">talen</a>
+<a class="nav-item nav-link" href="/uitloggen">uitloggen</a>
+{% endblock %}
+{% block content %}
+{{ form.email.label }} {{ form.email }}
+{{ form.submit }}
+{% endblock %}
